@@ -33,9 +33,14 @@ public class PaymentController {
         Payment payment = paymentService.getPaymentById(id);
         log.info("查询数据结果："+payment+"端口号："+port);
         if(payment!=null){
-            return new CommonResult(200,"success",payment);
+            return new CommonResult(200,"success"+port,payment);
         }else {
             return new CommonResult(404,"error");
         }
+    }
+
+    @GetMapping("/payment/lb")
+    public Integer getPort(){
+        return port;
     }
 }
